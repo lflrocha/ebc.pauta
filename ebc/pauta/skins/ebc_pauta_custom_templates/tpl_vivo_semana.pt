@@ -1,0 +1,41 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+
+<head>
+    <metal:block fill-slot="top_slot"
+           tal:define="dummy python:request.set('disable_border',1)" />
+</head>
+
+<body>
+
+    <div metal:fill-slot="main">
+
+        <div metal:define-macro="main">
+
+          <tal:def define="eventos python:context.getVivoSemana();
+                           meses python:sequence.sort(eventos.keys());">
+
+
+            <span class="titulo">Vivos</span>
+            <tal:meses repeat="mes meses">
+
+                <ul id="emProducao"
+                    tal:define="pts python:eventos[mes];
+                                ptss python:sequence.sort(pts,(('getData_hora', 'cmp', 'asc'),))">
+<span tal:content="python:mes" />;
+<span tal:content="python:len(pts)" />
+                </ul>
+            </tal:meses>
+          </tal:def>
+          <hr>
+
+        </div>
+    </div>
+</body>
+
+</html>

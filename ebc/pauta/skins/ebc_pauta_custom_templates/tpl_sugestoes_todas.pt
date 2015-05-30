@@ -1,0 +1,78 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+
+
+<head>
+    <metal:block fill-slot="top_slot"
+           tal:define="dummy python:request.set('disable_border',1)" />
+</head>
+
+<body>
+
+    <div metal:fill-slot="main">
+
+        <div metal:define-macro="main"
+             tal:define="data python:request.get('data',DateTime().Date());
+                         anterior python:DateTime(data)-1;
+                         proximo python:DateTime(data)+1;
+
+                         pautas python:context.getPautasSugestoesTodas();
+                         sort_on python:(('self', 'cmp', 'desc'),);
+                         meses python:sequence.sort(pautas.keys(),sort_on);">
+
+
+            <span class="titulo">Sugest&otilde;es</span>
+
+
+            <div class="data">
+                <a tal:attributes="href string:${context/portal_url}/pautas/tpl_sugestoes?data=${anterior}">Dia anterior</a>
+                <a tal:content="python:DateTime(data).strftime('%d/%m/%Y')"
+                   tal:attributes="href string:${context/portal_url}/pautas/tpl_sugestoes?data=${data}" />
+                <a tal:attributes="href string:${context/portal_url}/pautas/tpl_sugestoes?data=${proximo}">Dia posterior</a>                                
+                <input type="hidden" id="datepicker">
+                <a tal:attributes="href string:${context/portal_url}/pautas/tpl_sugestoes_todas">Todas sugest&otilde;es</a>                                
+                
+            </div>
+
+            <br /><br />
+
+            <tal:meses repeat="mes python:meses">
+            <span class="mes" tal:content="python:mes[4:6] + '/' + mes[0:4] " />
+            <ul id="emProducao"
+                tal:define="pts python:pautas[mes]">
+                <li tal:repeat="pauta pts">
+                    <span tal:content="python:pauta.getData.strftime('%d/%m/%Y')" class="data" /> - 
+                    <a tal:attributes="href pauta/getURL"><b tal:content="pauta/Title" /></a>
+                </li>                
+            </ul>
+            </tal:meses>
+
+        </div>
+
+        <script>
+        jq(function() {
+            jq( "#datepicker" ).datepicker({
+                showOn: "button",
+                buttonImage: "calendar_icon.gif",
+                buttonImageOnly: true,
+                changeMonth: true,
+                changeYear: true,
+                dateFormat: 'yy/mm/dd',
+                onSelect: function(dateText, inst) { 
+                    window.location = 'tpl_sugestoes?data='+dateText;
+                 },
+            });
+        });
+        </script>
+
+
+    </div>
+
+</body>
+
+</html>

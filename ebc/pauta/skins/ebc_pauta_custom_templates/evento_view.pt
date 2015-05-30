@@ -1,0 +1,141 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+<body>
+
+<metal:main fill-slot="main">
+    <tal:main-macro metal:define-macro="main"
+           tal:define="kssClassesView context/@@kss_field_decorator_view;
+                       getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
+                       templateId template/getId;
+                       data here/getData_hora;">
+
+
+        <div tal:replace="structure provider:plone.abovecontenttitle" />
+
+        <h1 class="documentFirstHeading"> 
+            <metal:field use-macro="python:here.widget('title', mode='view')">
+            Title
+            </metal:field>
+        </h1>
+
+        <div tal:replace="structure provider:plone.belowcontenttitle" />
+
+        <div tal:replace="structure provider:plone.abovecontentbody" />
+
+        <br />
+
+
+        <div class="field">
+          <label>Observação importante:</label>
+          <metal:field use-macro="python:here.widget('obs_importante', mode='view')" />
+        </div>
+
+        <div class="field">
+          <label>Data:</label>
+          <span tal:condition="data" tal:content="python:data.strftime('%d/%m/%Y %H:%M')" />
+        </div>
+
+        <div class="field">
+          <label>Ordem de Serviço:</label>
+          <metal:field use-macro="python:here.widget('ordem_servico', mode='view')" /> - 
+          <metal:field use-macro="python:here.widget('tipo', mode='view')" />
+        </div>
+
+        <div class="field">
+          <label>Políticas Públicas:</label>
+          <metal:field use-macro="python:here.widget('politica', mode='view')" />
+        </div>
+
+        <div class="field">
+          <label>Local:</label>
+          <br />
+          <span tal:content="structure here/getLocal" />
+        </div>
+
+        <div class="field">
+          <label>Contato:</label>
+          <br />
+          <span tal:content="structure here/getContatos" />
+        </div>
+
+        <div class="field">
+          <label>Flashes:</label>
+          <br />
+          <span tal:content="structure here/getFlashes" />
+        </div>
+
+        <div class="field">
+          <label>Rodapés:</label>
+          <br />
+          <span tal:content="structure here/getRodapes" />
+        </div>
+
+        <div class="field">
+          <label>Créditos:</label>
+          <br />
+          <span tal:content="structure here/getCreditos" />
+        </div>
+
+        <div class="field">
+          <label>Visita técnica:</label>
+          <br />
+          <span tal:content="structure here/getVisita" />
+        </div>
+
+
+        <div class="field">
+          <label>Veiculação:</label>
+          <metal:field use-macro="python:here.widget('veiculacao', mode='view')" />
+        </div>
+
+
+        <div class="field">
+          <label>Duração:</label>
+          <metal:field use-macro="python:here.widget('duracao', mode='view')" />
+        </div>
+
+        <div class="field">
+          <label>Ocorrências:</label>
+          <br />
+          <span tal:content="structure here/getOcorrencias" />
+        </div>
+
+        <div class="field">
+          <label>Observações:</label>
+          <br />
+          <span tal:content="structure here/getObservacoes" />
+        </div>
+
+
+      <div class="field">
+          <label>Vocabul&aacute;rio controlado:</label>
+          <metal:field use-macro="python:here.widget('vcg', mode='view')" />
+        </div>
+
+        <div class="field">
+          <label>Abrang&ecirc;ncia:</label>
+          <metal:field use-macro="python:here.widget('abrangencia', mode='view')" />
+        </div>
+
+        <div class="field">
+          <label>&Oacute;rg&atilde;os citados:</label>
+          <metal:field use-macro="python:here.widget('orgaoscitados', mode='view')" />
+        </div>
+
+        <div class="field">
+          <label>Planos e Programas de governo citados:</label>
+          <metal:field use-macro="python:here.widget('planos', mode='view')" />
+        </div>
+
+        <div tal:replace="structure provider:plone.belowcontentbody" />
+
+    </tal:main-macro>
+</metal:main>
+
+</body>
+</html>

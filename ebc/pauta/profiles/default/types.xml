@@ -1,0 +1,23 @@
+<object name="portal_types" meta_type="Plone Types Tool">
+  <!-- -*- extra stuff goes here -*- -->
+  <object name="Criacao"
+    meta_type="Factory-based Type Information with dynamic views" />
+  <object name="Chamada"
+    meta_type="Factory-based Type Information with dynamic views" />
+  <object name="Evento"
+    meta_type="Factory-based Type Information with dynamic views" />
+  <object name="Servico"
+    meta_type="Factory-based Type Information with dynamic views" />
+  <object name="Santinho"
+    meta_type="Factory-based Type Information with dynamic views" />
+  <object name="Infografia"
+    meta_type="Factory-based Type Information with dynamic views" />
+  <object name="Marcacao"
+    meta_type="Factory-based Type Information with dynamic views" />
+  <object name="Pauta"
+    meta_type="Factory-based Type Information with dynamic views" />
+  <object name="Especial"
+    meta_type="Factory-based Type Information with dynamic views" />
+  <object name="Texto"
+    meta_type="Factory-based Type Information with dynamic views" />
+</object>

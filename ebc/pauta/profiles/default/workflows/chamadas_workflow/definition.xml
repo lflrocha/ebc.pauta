@@ -1,0 +1,232 @@
+<?xml version="1.0"?>
+<dc-workflow workflow_id="chamadas_workflow"
+             title="chamadas_workflow" description=""
+             state_variable="review_state"
+             initial_state="nova">
+ <state state_id="aguardando_catalogacao"
+        title="Aguardando catalogacao">
+  <exit-transition transition_id="catalogar"/>
+ </state>
+ <state state_id="aguardando_conferencia"
+        title="Aguardando conferencia">
+  <exit-transition transition_id="entregar_programacao"/>
+  <exit-transition transition_id="retornar_aguardando_edicao"/>
+ </state>
+ <state state_id="aguardando_edicao"
+        title="Aguardando edicao">
+  <exit-transition transition_id="iniciar_edicao"/>
+  <exit-transition transition_id="retornar_aguardando_roteiro"/>
+ </state>
+ <state state_id="aguardando_roteiro"
+        title="Aguardando producao do roteiro">
+  <exit-transition transition_id="iniciar_roteiro"/>
+  <exit-transition transition_id="retornar_nova"/>
+ </state>
+ <state state_id="catalogado" title="Catalogado">
+  <exit-transition transition_id="para_matrizacao"/>
+  <exit-transition transition_id="retornar_aguardando_catalogacao"/>
+ </state>
+ <state state_id="editando" title="Em edicao">
+  <exit-transition transition_id="retornar_aguardando_edicao"/>
+  <exit-transition transition_id="solicitar_conferencia"/>
+ </state>
+ <state state_id="entregue"
+        title="Entregue para a programacao">
+  <exit-transition transition_id="para_catalogacao"/>
+  <exit-transition transition_id="pendencia"/>
+  <exit-transition transition_id="retornar_aguardando_conferencia"/>
+ </state>
+ <state state_id="enviado_matrizacao"
+        title="Enviado para matrizacao">
+  <exit-transition transition_id="retornar_catalogado"/>
+ </state>
+ <state state_id="nova" title="Nova solicitacao">
+  <exit-transition transition_id="solicitar_chamada"/>
+ </state>
+ <state state_id="pendencia" title="Com pendencia">
+  <exit-transition transition_id="solicitar_conferencia"/>
+  <exit-transition transition_id="solicitar_edicao"/>
+ </state>
+ <state state_id="produzindo_roteiro"
+        title="Produzindo roteiro">
+  <exit-transition transition_id="retornar_aguardando_roteiro"/>
+  <exit-transition transition_id="solicitar_edicao"/>
+ </state>
+ <transition transition_id="catalogar" title="Catalogar"
+             new_state="catalogado" trigger="USER"
+             before_script="" after_script="">
+  <action url="" category="workflow">Catalogar</action>
+  <guard>
+  </guard>
+ </transition>
+ <transition transition_id="entregar_programacao"
+             title="Entregar para programacao"
+             new_state="entregue" trigger="USER"
+             before_script="" after_script="">
+  <action url="" category="workflow">Entregar para programacao</action>
+  <guard>
+  </guard>
+ </transition>
+ <transition transition_id="iniciar_edicao"
+             title="Iniciar edicao" new_state="editando"
+             trigger="USER" before_script="" after_script="">
+  <action url="" category="workflow">Iniciar edicao</action>
+  <guard>
+  </guard>
+ </transition>
+ <transition transition_id="iniciar_roteiro"
+             title="Iniciar producao do roteiro"
+             new_state="produzindo_roteiro" trigger="USER"
+             before_script="" after_script="">
+  <action url="" category="workflow">Iniciar producao do roteiro</action>
+  <guard>
+  </guard>
+ </transition>
+ <transition transition_id="para_catalogacao"
+             title="Solicitar catalogacao"
+             new_state="aguardando_catalogacao"
+             trigger="USER" before_script="" after_script="">
+  <action url="" category="workflow">Solicitar catalogacao</action>
+  <guard>
+  </guard>
+ </transition>
+ <transition transition_id="para_matrizacao"
+             title="Enviar para matrizacao"
+             new_state="enviado_matrizacao" trigger="USER"
+             before_script="" after_script="">
+  <action url="" category="workflow">Enviar para matrizacao</action>
+  <guard>
+  </guard>
+ </transition>
+ <transition transition_id="pendencia" title="Com pendencia"
+             new_state="pendencia" trigger="USER"
+             before_script="" after_script="">
+  <action url="" category="workflow">Com pendencia</action>
+  <guard>
+  </guard>
+ </transition>
+ <transition transition_id="retornar_aguardando_catalogacao"
+             title="Retornar para aguardando catalogacao"
+             new_state="aguardando_catalogacao"
+             trigger="USER" before_script="" after_script="">
+  <action url="" category="workflow">Retornar para aguardando catalogacao</action>
+  <guard>
+  </guard>
+ </transition>
+ <transition transition_id="retornar_aguardando_conferencia"
+             title="Retornar para aguardando conferencia"
+             new_state="aguardando_conferencia"
+             trigger="USER" before_script="" after_script="">
+  <action url="" category="workflow">Retornar para aguardando conferencia</action>
+  <guard>
+  </guard>
+ </transition>
+ <transition transition_id="retornar_aguardando_edicao"
+             title="Retornar para aguardando edicao"
+             new_state="aguardando_edicao" trigger="USER"
+             before_script="" after_script="">
+  <action url="" category="workflow">Retornar para aguardando edicao</action>
+  <guard>
+  </guard>
+ </transition>
+ <transition transition_id="retornar_aguardando_roteiro"
+             title="Retornar para aguardando roteiro"
+             new_state="aguardando_roteiro" trigger="USER"
+             before_script="" after_script="">
+  <action url="" category="workflow">Retornar para aguardando roteiro</action>
+  <guard>
+  </guard>
+ </transition>
+ <transition transition_id="retornar_catalogado"
+             title="Retornar para catalogado"
+             new_state="catalogado" trigger="USER"
+             before_script="" after_script="">
+  <action url="" category="workflow">Retornar para catalogado</action>
+  <guard>
+  </guard>
+ </transition>
+ <transition transition_id="retornar_nova"
+             title="Retornar para nova solicitacao"
+             new_state="nova" trigger="USER"
+             before_script="" after_script="">
+  <action url="" category="workflow">Retornar para nova solicitacao</action>
+  <guard>
+  </guard>
+ </transition>
+ <transition transition_id="solicitar_chamada"
+             title="Soliciar nova chamada"
+             new_state="aguardando_roteiro" trigger="USER"
+             before_script="" after_script="">
+  <action url="" category="workflow">Soliciar nova chamada</action>
+  <guard>
+  </guard>
+ </transition>
+ <transition transition_id="solicitar_conferencia"
+             title="Enviar para conferencia"
+             new_state="aguardando_conferencia"
+             trigger="USER" before_script="" after_script="">
+  <action url="" category="workflow">Enviar para conferencia</action>
+  <guard>
+  </guard>
+ </transition>
+ <transition transition_id="solicitar_edicao"
+             title="Enviar para edicao"
+             new_state="aguardando_edicao" trigger="USER"
+             before_script="" after_script="">
+  <action url="" category="workflow">Enviar para edicao</action>
+  <guard>
+  </guard>
+ </transition>
+ <variable variable_id="action" for_catalog="False"
+           for_status="True" update_always="True">
+  <description>The last transition</description>
+  <default>
+   
+   <expression>transition/getId|nothing</expression>
+  </default>
+  <guard>
+  </guard>
+ </variable>
+ <variable variable_id="actor" for_catalog="False"
+           for_status="True" update_always="True">
+  <description>The ID of the user who performed the last transition</description>
+  <default>
+   
+   <expression>user/getId</expression>
+  </default>
+  <guard>
+  </guard>
+ </variable>
+ <variable variable_id="comments" for_catalog="False"
+           for_status="True" update_always="True">
+  <description>Comments about the last transition</description>
+  <default>
+   
+   <expression>python:state_change.kwargs.get('comment', '')</expression>
+  </default>
+  <guard>
+  </guard>
+ </variable>
+ <variable variable_id="review_history" for_catalog="False"
+           for_status="False" update_always="False">
+  <description>Provides access to workflow history</description>
+  <default>
+   
+   <expression>state_change/getHistory</expression>
+  </default>
+  <guard>
+   <guard-permission>Request review</guard-permission>
+   <guard-permission>Review portal content</guard-permission>
+  </guard>
+ </variable>
+ <variable variable_id="time" for_catalog="False"
+           for_status="True" update_always="True">
+  <description>Time of the last transition</description>
+  <default>
+   
+   <expression>state_change/getDateTime</expression>
+  </default>
+  <guard>
+  </guard>
+ </variable>
+</dc-workflow>

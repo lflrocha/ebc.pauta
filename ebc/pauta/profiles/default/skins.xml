@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<object name="portal_skins" allow_any="False" cookie_persistence="False"
+   default_skin="EBC Pauta">
+
+ <object name="ebc_pauta_custom_images"
+    meta_type="Filesystem Directory View"
+    directory="ebc.pauta:skins/ebc_pauta_custom_images"/>
+ <object name="ebc_pauta_custom_templates"
+    meta_type="Filesystem Directory View"
+    directory="ebc.pauta:skins/ebc_pauta_custom_templates"/>
+ <object name="ebc_pauta_icons"
+    meta_type="Filesystem Directory View"
+    directory="ebc.pauta:skins/ebc_pauta_icons"/>
+ <object name="ebc_pauta_styles"
+    meta_type="Filesystem Directory View"
+    directory="ebc.pauta:skins/ebc_pauta_styles"/>
+
+ <skin-path name="EBC Pauta" based-on="Plone Default">
+  <layer name="ebc_pauta_custom_images"
+     insert-after="custom"/>
+  <layer name="ebc_pauta_custom_templates"
+     insert-after="ebc_pauta_custom_images"/>
+  <layer name="ebc_pauta_styles"
+     insert-after="ebc_pauta_custom_templates"/>
+  <layer name="ebc_pauta_icons"
+     insert-after="ebc_pauta_styles"/>
+ </skin-path>
+
+</object>

@@ -1,0 +1,43 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+
+<head>
+    <metal:block fill-slot="top_slot"
+           tal:define="dummy python:request.set('disable_border',1)" />
+</head>
+
+<body>
+
+    <div metal:fill-slot="main">
+
+        <div metal:define-macro="main"
+             tal:define="pautas python:context.getPautasFrequencia();">
+
+            <span class="titulo">Frequência Brasil</span>
+            
+                <ul id="emProducao">
+                                    
+                    <li tal:repeat="pauta pautas">
+                        <tal:def define="obj pauta/getObject;">
+                        
+                            <span tal:content="python:pauta.getData.strftime('%d/%m/%Y')" class="data" /> - 
+                            <a tal:attributes="href pauta/getURL"><b tal:content="pauta/Title" /></a><br />
+                            
+                        </tal:def>
+                            
+                    </li>                
+
+                </ul>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+<body>
+
+<metal:main fill-slot="main">
+    <tal:main-macro metal:define-macro="main"
+           tal:define="kssClassesView context/@@kss_field_decorator_view;
+                       getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
+                       templateId template/getId;
+                       data here/getExibicao_programa;
+                       chamada here/getChamada;
+                       episodio here/getEpisodio;">
+
+
+        <div tal:replace="structure provider:plone.abovecontenttitle" />
+
+        <h1 class="documentFirstHeading"> 
+            <metal:field use-macro="python:here.widget('title', mode='view')">Title</metal:field> - 
+            <metal:field use-macro="python:here.widget('episodio', mode='view')">Title</metal:field>
+        </h1>
+
+        <div tal:replace="structure provider:plone.belowcontenttitle" />
+
+        <div tal:replace="structure provider:plone.abovecontentbody" />
+
+        <br />
+
+        <div class="field">
+          <label>Fita com o programa:</label>
+          <metal:field use-macro="python:here.widget('fita_programa', mode='view')" />
+        </div>
+
+        <div class="field">
+          <label>Data de exibi&ccedil;&atilde;o:</label>
+          <span tal:condition="data" tal:content="python:data.strftime('%d/%m/%Y - %H:%M')" />
+        </div>
+
+        <div class="field">
+          <label>Chamadas:</label>
+          <metal:field use-macro="python:here.widget('chamada', mode='view')" />
+        </div>
+
+
+        <div class="field">
+          <label>Observa&ccedil;&otilde;es:</label>
+          <br />
+          <span tal:content="structure here/description" />
+        </div>
+
+
+
+        <div tal:replace="structure provider:plone.belowcontentbody" />
+
+    </tal:main-macro>
+</metal:main>
+
+</body>
+</html>

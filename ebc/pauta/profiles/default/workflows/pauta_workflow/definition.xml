@@ -1,0 +1,135 @@
+<?xml version="1.0"?>
+<dc-workflow workflow_id="pauta_workflow"
+             title="pauta_workflow"
+             state_variable="review_state"
+             initial_state="Sugestao"
+             xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+             i18n:domain="plone">
+ <state state_id="Arquivo"
+        title="Arquivo"
+        i18n:attributes="title">
+  <exit-transition transition_id="Retornar para producao"/>
+  <exit-transition transition_id="Enviar para Pautao"/>
+ </state>
+ <state state_id="Em producao"
+        title="Em producao"
+        i18n:attributes="title">
+  <exit-transition transition_id="Enviar para arquivo"/>
+  <exit-transition transition_id="Enviar para pautao"/>
+  <exit-transition transition_id="Retornar para sugestao"/>
+ </state>
+ <state state_id="Pautao"
+        title="Pautao"
+        i18n:attributes="title">
+  <exit-transition transition_id="Retornar para producao"/>
+  <exit-transition transition_id="Enviar para arquivo"/>
+ </state>
+ <state state_id="Sugestao"
+        title="Sugestao"
+        i18n:attributes="title">
+  <exit-transition transition_id="Enviar para producao"/>
+ </state>
+ <transition transition_id="Enviar para arquivo"
+             title="Enviar para arquivo"
+             new_state="Arquivo"
+             trigger="USER"
+             before_script=""
+             after_script=""
+             i18n:attributes="title">
+  <action url="" category="workflow" i18n:translate="">Enviar para arquivo</action>
+  <guard>
+  </guard>
+ </transition>
+ <transition transition_id="Enviar para pautao"
+             title="Enviar para pautao"
+             new_state="Pautao"
+             trigger="USER"
+             before_script=""
+             after_script=""
+             i18n:attributes="title">
+  <action url="" category="workflow" i18n:translate="">Enviar para pautao</action>
+  <guard>
+  </guard>
+ </transition>
+ <transition transition_id="Enviar para producao"
+             title="Enviar para producao"
+             new_state="Em producao"
+             trigger="USER"
+             before_script=""
+             after_script=""
+             i18n:attributes="title">
+  <action url="" category="workflow" i18n:translate="">Enviar para producao</action>
+  <guard>
+  </guard>
+ </transition>
+ <transition transition_id="Retornar para producao"
+             title="Retornar para producao"
+             new_state="Em producao"
+             trigger="USER"
+             before_script=""
+             after_script=""
+             i18n:attributes="title">
+  <action url="" category="workflow" i18n:translate="">Retornar para producao</action>
+  <guard>
+  </guard>
+ </transition>
+ <transition transition_id="Retornar para sugestao"
+             title="Retornar para sugestao"
+             new_state="Sugestao"
+             trigger="USER"
+             before_script=""
+             after_script=""
+             i18n:attributes="title">
+  <action url="" category="workflow" i18n:translate="">Retornar para sugestao</action>
+  <guard>
+  </guard>
+ </transition>
+ <variable variable_id="action" for_catalog="False"
+           for_status="True" update_always="True">
+  <description>The last transition</description>
+  <default>
+   <expression>transition/getId|nothing</expression>
+  </default>
+  <guard>
+  </guard>
+ </variable>
+ <variable variable_id="actor" for_catalog="False"
+           for_status="True" update_always="True">
+  <description>The ID of the user who performed the last transition</description>
+  <default>
+   <expression>user/getId</expression>
+  </default>
+  <guard>
+  </guard>
+ </variable>
+ <variable variable_id="comments" for_catalog="False"
+           for_status="True" update_always="True">
+  <description>Comments about the last transition</description>
+  <default>
+   <expression>python:state_change.kwargs.get('comment', '')</expression>
+  </default>
+  <guard>
+  </guard>
+ </variable>
+ <variable variable_id="review_history" for_catalog="False"
+           for_status="False" update_always="False">
+  <description>Provides access to workflow history</description>
+  <default>
+   <expression>state_change/getHistory</expression>
+  </default>
+  <guard>
+   <guard-permission>Request review</guard-permission>
+   <guard-permission>Review portal content</guard-permission>
+  </guard>
+ </variable>
+ <variable variable_id="time" for_catalog="False"
+           for_status="True" update_always="True">
+  <description>Time of the last transition</description>
+  <default>
+   <expression>state_change/getDateTime</expression>
+  </default>
+  <guard>
+  </guard>
+ </variable>
+ <!-- We dont use workflow scripts any more, we use subscribers -->
+</dc-workflow>

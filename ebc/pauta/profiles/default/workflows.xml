@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<object name="portal_workflow" meta_type="Plone Workflow Tool">
+ <property
+    name="title">Contains workflow definitions for your portal</property>
+ <object name="chamadas_workflow" meta_type="Workflow"/>
+ <object name="especial_workflow" meta_type="Workflow"/>
+ <object name="infografia_workflow" meta_type="Workflow"/>
+ <object name="marcacao_workflow" meta_type="Workflow"/>
+ <object name="pauta_workflow" meta_type="Workflow"/>
+ <object name="simple_publication_workflow" meta_type="Workflow"/>
+ <object name="vivo_workflow" meta_type="Workflow"/>
+ <bindings>
+  <default>
+   <bound-workflow workflow_id="simple_publication_workflow"/>
+  </default>
+  <type type_id="ATBooleanCriterion"/>
+  <type type_id="ATCurrentAuthorCriterion"/>
+  <type type_id="ATDateCriteria"/>
+  <type type_id="ATDateRangeCriterion"/>
+  <type type_id="ATListCriterion"/>
+  <type type_id="ATPathCriterion"/>
+  <type type_id="ATPortalTypeCriterion"/>
+  <type type_id="ATReferenceCriterion"/>
+  <type type_id="ATRelativePathCriterion"/>
+  <type type_id="ATSelectionCriterion"/>
+  <type type_id="ATSimpleIntCriterion"/>
+  <type type_id="ATSimpleStringCriterion"/>
+  <type type_id="ATSortCriterion"/>
+  <type type_id="AliasVocabulary"/>
+  <type type_id="Chamada">
+   <bound-workflow workflow_id="chamadas_workflow"/>
+  </type>
+  <type type_id="Discussion Item"/>
+  <type type_id="Especial">
+   <bound-workflow workflow_id="especial_workflow"/>
+  </type>
+  <type type_id="Evento">
+   <bound-workflow workflow_id="vivo_workflow"/>
+  </type>
+  <type type_id="File"/>
+  <type type_id="Image"/>
+  <type type_id="Infografia">
+   <bound-workflow workflow_id="infografia_workflow"/>
+  </type>
+  <type type_id="Marcacao">
+   <bound-workflow workflow_id="marcacao_workflow"/>
+  </type>
+  <type type_id="Pauta">
+   <bound-workflow workflow_id="pauta_workflow"/>
+  </type>
+  <type type_id="Plone Site"/>
+  <type type_id="Santinho">
+   <bound-workflow workflow_id="infografia_workflow"/>
+  </type>
+  <type type_id="Servico">
+   <bound-workflow workflow_id="infografia_workflow"/>
+  </type>
+  <type type_id="SimpleVocabulary"/>
+  <type type_id="SimpleVocabularyTerm"/>
+  <type type_id="SortedSimpleVocabulary"/>
+  <type type_id="TreeVocabulary"/>
+  <type type_id="TreeVocabularyTerm"/>
+  <type type_id="VdexFileVocabulary"/>
+  <type type_id="VdexLangstring"/>
+  <type type_id="VdexMediaDescriptor"/>
+  <type type_id="VdexRelationEndPoint"/>
+  <type type_id="VdexTerm"/>
+  <type type_id="VdexVocabulary"/>
+  <type type_id="VocabularyLibrary"/>
+ </bindings>
+</object>

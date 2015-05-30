@@ -1,0 +1,147 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+
+<head>
+    <metal:block fill-slot="top_slot"
+           tal:define="dummy python:request.set('disable_border',1)" />
+</head>
+
+
+<body>
+
+    <div metal:fill-slot="main">
+
+        <div metal:define-macro="main"
+             tal:define="chamadas python:context.getChamadas();
+
+                         nova python:chamadas['nova'];
+                         fita_disponivel python:chamadas['fita_disponivel'];
+                         aguardando_roteiro python:chamadas['aguardando_roteiro'];
+                         produzindo_roteiro python:chamadas['produzindo_roteiro'];
+                         aguardando_edicao python:chamadas['aguardando_edicao'];
+                         editando python:chamadas['editando'];
+                         aguardando_conferencia python:chamadas['aguardando_conferencia'];
+                         entregue python:chamadas['entregue'];
+                         aguardando_catalogacao python:chamadas['aguardando_catalogacao'];
+                         catalogado python:chamadas['catalogado'];
+                         enviado_matrizacao python:chamadas['enviado_matrizacao'];
+                         pendencia python:chamadas['pendencia']; ">
+
+
+
+            <span class="titulo">Chamadas:</span>
+
+
+            <span class="turno"> Nova </span>
+            <ul id="chamadas" class="pautaCor1">
+                <li tal:repeat="chamada nova">
+                    <a tal:attributes="href chamada/getURL" tal:content="python:chamada.getExibicao_programa.strftime('%d/%m/%Y - %H:%M')" class="manchete"></a> - 
+                    <a tal:attributes="href chamada/getURL" tal:content="chamada/Title" class="manchete"></a> <br />
+                    <a tal:attributes="href chamada/getURL" tal:content="chamada/getEpisodio"></a>  
+                </li>
+            </ul>
+
+            <span class="turno"> Fita disponível no tráfego </span>
+            <ul id="chamadas" class="pautaCor2">
+                <li tal:repeat="chamada fita_disponivel">
+                    <a tal:attributes="href chamada/getURL" tal:content="python:chamada.getExibicao_programa.strftime('%d/%m/%Y - %H:%M')" class="manchete"></a> - 
+                    <a tal:attributes="href chamada/getURL" tal:content="chamada/Title" class="manchete"></a> <br />
+                    <a tal:attributes="href chamada/getURL" tal:content="chamada/getEpisodio"></a>  
+                </li>
+            </ul>
+            <span class="turno"> Aguardando produção do roteiro </span>
+            <ul id="chamadas" class="pautaCor3">
+                <li tal:repeat="chamada aguardando_roteiro">
+                    <a tal:attributes="href chamada/getURL" tal:content="python:chamada.getExibicao_programa.strftime('%d/%m/%Y - %H:%M')" class="manchete"></a> - 
+                    <a tal:attributes="href chamada/getURL" tal:content="chamada/Title" class="manchete"></a>  <br />
+                    <a tal:attributes="href chamada/getURL" tal:content="chamada/getEpisodio"></a>  
+                </li>
+            </ul>
+            <span class="turno"> Produzindo o roteiro </span>
+            <ul id="chamadas" class="pautaCor4">
+                <li tal:repeat="chamada produzindo_roteiro">
+                    <a tal:attributes="href chamada/getURL" tal:content="python:chamada.getExibicao_programa.strftime('%d/%m/%Y - %H:%M')" class="manchete"></a> - 
+                    <a tal:attributes="href chamada/getURL" tal:content="chamada/Title" class="manchete"></a>  <br />
+                    <a tal:attributes="href chamada/getURL" tal:content="chamada/getEpisodio"></a>  
+                </li>
+            </ul>
+            <span class="turno"> Aguardando edição </span>
+            <ul id="chamadas" class="pautaCor1">
+                <li tal:repeat="chamada aguardando_edicao">
+                    <a tal:attributes="href chamada/getURL" tal:content="python:chamada.getExibicao_programa.strftime('%d/%m/%Y - %H:%M')" class="manchete"></a> - 
+                    <a tal:attributes="href chamada/getURL" tal:content="chamada/Title" class="manchete"></a>  <br />
+                    <a tal:attributes="href chamada/getURL" tal:content="chamada/getEpisodio"></a>  
+                </li>
+            </ul>
+            <span class="turno"> Editando </span>
+            <ul id="chamadas" class="pautaCor2">
+                <li tal:repeat="chamada editando">
+                    <a tal:attributes="href chamada/getURL" tal:content="python:chamada.getExibicao_programa.strftime('%d/%m/%Y - %H:%M')" class="manchete"></a> - 
+                    <a tal:attributes="href chamada/getURL" tal:content="chamada/Title" class="manchete"></a>  <br />
+                    <a tal:attributes="href chamada/getURL" tal:content="chamada/getEpisodio"></a>  
+                </li>
+            </ul>
+            <span class="turno"> Aguardando conferência </span>
+            <ul id="chamadas" class="pautaCor3">
+                <li tal:repeat="chamada aguardando_conferencia">
+                    <a tal:attributes="href chamada/getURL" tal:content="python:chamada.getExibicao_programa.strftime('%d/%m/%Y - %H:%M')" class="manchete"></a> - 
+                    <a tal:attributes="href chamada/getURL" tal:content="chamada/Title" class="manchete"></a>  <br />
+                    <a tal:attributes="href chamada/getURL" tal:content="chamada/getEpisodio"></a>  
+                </li>
+            </ul>
+            <span class="turno"> Entregue </span>
+            <ul id="chamadas" class="pautaCor4">
+                <li tal:repeat="chamada entregue">
+                    <a tal:attributes="href chamada/getURL" tal:content="python:chamada.getExibicao_programa.strftime('%d/%m/%Y - %H:%M')" class="manchete"></a> - 
+                    <a tal:attributes="href chamada/getURL" tal:content="chamada/Title" class="manchete"></a>  <br />
+                    <a tal:attributes="href chamada/getURL" tal:content="chamada/getEpisodio"></a>  
+                </li>
+            </ul>
+            <span class="turno"> Aguardando Catalogação </span>
+            <ul id="chamadas" class="pautaCor1">
+                <li tal:repeat="chamada aguardando_catalogacao">
+                    <a tal:attributes="href chamada/getURL" tal:content="python:chamada.getExibicao_programa.strftime('%d/%m/%Y - %H:%M')" class="manchete"></a> - 
+                    <a tal:attributes="href chamada/getURL" tal:content="chamada/Title" class="manchete"></a> <br />
+                    <a tal:attributes="href chamada/getURL" tal:content="chamada/getEpisodio"></a>  
+                </li>
+            </ul>
+            <span class="turno"> Catalogado </span>
+            <ul id="chamadas" class="pautaCor2">
+                <li tal:repeat="chamada catalogado">
+                    <a tal:attributes="href chamada/getURL" tal:content="python:chamada.getExibicao_programa.strftime('%d/%m/%Y - %H:%M')" class="manchete"></a> - 
+                    <a tal:attributes="href chamada/getURL" tal:content="chamada/Title" class="manchete"></a> <br />
+                    <a tal:attributes="href chamada/getURL" tal:content="chamada/getEpisodio"></a>  
+                </li>
+            </ul>
+            <span class="turno"> Enviado para matrização </span>
+            <ul id="chamadas" class="pautaCor3">
+                <li tal:repeat="chamada enviado_matrizacao">
+                    <a tal:attributes="href chamada/getURL" tal:content="python:chamada.getExibicao_programa.strftime('%d/%m/%Y - %H:%M')" class="manchete"></a> - 
+                    <a tal:attributes="href chamada/getURL" tal:content="chamada/Title" class="manchete"></a> <br />
+                    <a tal:attributes="href chamada/getURL" tal:content="chamada/getEpisodio"></a>  
+                </li>
+            </ul>
+            <span class="turno"> Com pendência </span>
+            <ul id="chamadas" class="pautaCor4">
+                <li tal:repeat="chamada pendencia">
+                    <a tal:attributes="href chamada/getURL" tal:content="python:chamada.getExibicao_programa.strftime('%d/%m/%Y - %H:%M')" class="manchete"></a> - 
+                    <a tal:attributes="href chamada/getURL" tal:content="chamada/Title" class="manchete"></a> <br />
+                    <a tal:attributes="href chamada/getURL" tal:content="chamada/getEpisodio"></a>  
+                </li>
+            </ul>
+
+
+
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

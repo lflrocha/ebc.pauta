@@ -1,0 +1,105 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+
+<head>
+    <metal:block fill-slot="top_slot"
+           tal:define="dummy python:request.set('disable_border',1)" />
+</head>
+
+
+<body>
+
+    <div metal:fill-slot="main">
+
+        <div metal:define-macro="main"
+             tal:define="infografias python:context.getSantinho();
+                         solicitacao python:infografias['Solicitacao'];
+                         aguardando python:infografias['Aguardando edicao'];
+                         edicao python:infografias['Em edicao'];
+                         finalizado python:infografias['Finalizado'];
+                         pendencia python:infografias['Pendencia']; ">
+
+
+            <span class="titulo">Santinhos:</span>
+
+
+            <span class="turno"> Solicita&ccedil;&otilde;es</span>
+            <ul id="pautas" class="pautaManha">
+                <li tal:repeat="pauta solicitacao">
+                    <tal:def define="obj pauta/getObject;
+                                     editores obj/getEditoresString;">
+                    <a tal:attributes="href pauta/getURL" tal:content="pauta/aq_parent/Title" class="manchete"></a>
+                    <br />
+                    Editores: <span tal:condition="editores" tal:content="editores" /><br />
+                    </tal:def>
+                </li>
+            </ul>
+
+
+            <span class="turno">Aguardando edi&ccedil;&atilde;o</span>
+            <ul id="pautas" class="pautaManha">
+                <li tal:repeat="pauta aguardando">
+                    <tal:def define="obj pauta/getObject;
+                                     editores obj/getEditoresString;">
+                    <a tal:attributes="href pauta/getURL" tal:content="pauta/aq_parent/Title" class="manchete"></a>
+                    <br />
+                    Editores: <span tal:condition="editores" tal:content="editores" /><br />
+                    </tal:def>
+                </li>
+            </ul>
+
+
+            <span class="turno">Em edi&ccedil;&atilde;o</span>
+            <ul id="pautas" class="pautaManha">
+                <li tal:repeat="pauta edicao">
+                    <tal:def define="obj pauta/getObject;
+                                     editores obj/getEditoresString;
+                                     videografista obj/getVideografista;">
+                    <a tal:attributes="href pauta/getURL" tal:content="pauta/aq_parent/Title" class="manchete"></a>
+                    <br />
+                    Editores: <span tal:condition="editores" tal:content="editores" /><br />
+                    Videografista: <span tal:condition="videografista" tal:content="videografista" /><br />
+                    </tal:def>
+                </li>
+            </ul>
+
+            <span class="turno">Finalizados</span>
+            <ul id="pautas" class="pautaManha">
+                <li tal:repeat="pauta finalizado">
+                    <tal:def define="obj pauta/getObject;
+                                     editores obj/getEditoresString;
+                                     videografista obj/getVideografista;">
+                    <a tal:attributes="href pauta/getURL" tal:content="pauta/aq_parent/Title" class="manchete"></a>
+                    <br />
+                    Editores: <span tal:condition="editores" tal:content="editores" /><br />
+                    Videografista: <span tal:condition="videografista" tal:content="videografista" /><br />
+                    </tal:def>
+                </li>
+            </ul>
+
+            <span class="turno">Com pend&ecirc;ncia</span>
+            <ul id="pautas" class="pautaManha">
+                <li tal:repeat="pauta pendencia">
+                    <tal:def define="obj pauta/getObject;
+                                     editores obj/getEditoresString;">
+                    <a tal:attributes="href pauta/getURL" tal:content="pauta/aq_parent/Title" class="manchete"></a>
+                    <br />
+                    Editores: <span tal:condition="editores" tal:content="editores" /><br />
+                    </tal:def>
+                </li>
+            </ul>
+
+
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

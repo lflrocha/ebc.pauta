@@ -1,0 +1,159 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+
+<head>
+    <metal:block fill-slot="top_slot"
+           tal:define="dummy python:request.set('disable_border',1)" />
+</head>
+
+
+<body>
+    <div metal:fill-slot="main">
+
+        <div metal:define-macro="main"
+             tal:define="data python:request.get('data',DateTime().Date());
+                         anterior python:DateTime(data)-1;
+                         proximo python:DateTime(data)+1;                         
+                         pautas python:context.getPautasPautao(data);
+                         manha python:pautas['manha'];
+                         tarde python:pautas['tarde'];
+                         noite python:pautas['noite'];
+                         notas python:pautas['nota'];
+                         semturno python:pautas['semturno'];
+                         programas python:pautas['programas'];">
+
+            <span class="titulo">Paut&atilde;o</span>
+        
+            <div class="data">
+                <a tal:attributes="href string:${context/portal_url}/pautas/tpl_pautao?data=${anterior}">Dia anterior</a>
+                <a tal:content="python:DateTime(data).strftime('%d/%m/%Y')"
+                   tal:attributes="href string:${context/portal_url}/pautas/tpl_pautao?data=${data}" style="font-size: 150%" />
+                <a tal:attributes="href string:${context/portal_url}/pautas/tpl_pautao?data=${proximo}">Dia posterior</a>                                
+                <input type="hidden" id="datepicker">
+                
+            </div>
+        
+        
+            <div class="turno">Manh&atilde;</div>
+
+            <ul id="pautas" class="pautaCor1">
+                <li tal:repeat="pauta manha">
+                    <tal:def define="produtores pauta/getProdutoresString;
+                                     editores pauta/getEditoresString;
+                                     reporteres pauta/getReporteresString;">
+                    <a tal:attributes="href pauta/getURL" tal:content="pauta/Title" class="manchete"></a><br />
+                    <span tal:content="pauta/getMidiasString" /> - <span tal:content="pauta/getTiposString" /><br />
+                    Produtores: <span tal:condition="produtores" tal:content="produtores" /><br />
+                    Editores: <span tal:condition="editores" tal:content="editores" /><br />
+                    Rep&oacute;rteres: <span tal:condition="reporteres" tal:content="reporteres" />
+                    </tal:def>
+                </li>
+            </ul>
+
+            <div class="turno">Tarde</div>
+            <ul id="pautas" class="pautaCor2">
+                <li tal:repeat="pauta tarde" >
+                    <tal:def define="produtores pauta/getProdutoresString;
+                                     editores pauta/getEditoresString;
+                                     reporteres pauta/getReporteresString;">
+                    <a tal:attributes="href pauta/getURL" tal:content="pauta/Title" class="manchete"></a><br />
+                    <span tal:content="pauta/getMidiasString" /> - <span tal:content="pauta/getTiposString" /><br />
+                    Produtores: <span tal:condition="produtores" tal:content="produtores" /><br />
+                    Editores: <span tal:condition="editores" tal:content="editores" /><br />
+                    Rep&oacute;rteres: <span tal:condition="reporteres" tal:content="reporteres" />
+                    </tal:def>
+                </li>
+            </ul>
+
+            <div class="turno">Noite</div>
+            <ul id="pautas" class="pautaCor3">
+                <li tal:repeat="pauta noite">
+                    <tal:def define="produtores pauta/getProdutoresString;
+                                     editores pauta/getEditoresString;
+                                     reporteres pauta/getReporteresString;">
+                    <a tal:attributes="href pauta/getURL" tal:content="pauta/Title" class="manchete"></a><br />
+                    <span tal:content="pauta/getMidiasString" /> - <span tal:content="pauta/getTiposString" /><br />
+                    Produtores: <span tal:condition="produtores" tal:content="produtores" /><br />
+                    Editores: <span tal:condition="editores" tal:content="editores" /><br />
+                    Rep&oacute;rteres: <span tal:condition="reporteres" tal:content="reporteres" />
+                    </tal:def>
+                </li>
+            </ul>
+
+            <div class="turno">Sem Turno</div>
+            <ul id="pautas" class="pautaCor5">
+                <li tal:repeat="pauta semturno">
+                    <tal:def define="produtores pauta/getProdutoresString;
+                                     editores pauta/getEditoresString;
+                                     reporteres pauta/getReporteresString;">
+                    <a tal:attributes="href pauta/getURL" tal:content="pauta/Title" class="manchete"></a><br />
+                    <span tal:content="pauta/getMidiasString" /> - <span tal:content="pauta/getTiposString" /><br />
+                    Produtores: <span tal:condition="produtores" tal:content="produtores" /><br />
+                    Editores: <span tal:condition="editores" tal:content="editores" /><br />
+                    Rep&oacute;rteres: <span tal:condition="reporteres" tal:content="reporteres" />
+                    </tal:def>
+                </li>
+            </ul>
+
+
+            <div class="turno">Notas</div>
+            <ul id="pautas" class="pautaCor4">
+                <li tal:repeat="pauta notas">
+                    <tal:def define="produtores pauta/getProdutoresString;
+                                     editores pauta/getEditoresString;
+                                     reporteres pauta/getReporteresString;">
+                    <a tal:attributes="href pauta/getURL" tal:content="pauta/Title" class="manchete"></a><br />
+                    <span tal:content="pauta/getMidiasString" /> - <span tal:content="pauta/getTiposString" /><br />
+                    Produtores: <span tal:condition="produtores" tal:content="produtores" /><br />
+                    Editores: <span tal:condition="editores" tal:content="editores" /><br />
+                    Rep&oacute;rteres: <span tal:condition="reporteres" tal:content="reporteres" />
+                    </tal:def>
+                </li>
+            </ul>
+
+
+            <div class="turno">Programas</div>
+            <ul id="pautas" class="pautaCor5">
+                <li tal:repeat="pauta programas">
+                    <tal:def define="produtores pauta/getProdutoresString;
+                                     editores pauta/getEditoresString;
+                                     reporteres pauta/getReporteresString;">
+                    <a tal:attributes="href pauta/getURL" tal:content="pauta/Title" class="manchete"></a><br />
+                    <span tal:content="pauta/getMidiasString" /> - <span tal:content="pauta/getTiposString" /><br />
+                    Produtores: <span tal:condition="produtores" tal:content="produtores" /><br />
+                    Editores: <span tal:condition="editores" tal:content="editores" /><br />
+                    Rep&oacute;rteres: <span tal:condition="reporteres" tal:content="reporteres" />
+                    </tal:def>
+                </li>
+            </ul>
+
+        </div>
+
+    <script>
+    jq(function() {
+        jq( "#datepicker" ).datepicker({
+            showOn: "button",
+            buttonImage: "calendar_icon.gif",
+            buttonImageOnly: true,
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'yy/mm/dd',
+            onSelect: function(dateText, inst) { 
+                window.location = 'tpl_pautao?data='+dateText;
+             },
+        });
+    });
+    </script>
+
+
+
+    </div>
+
+</body>
+
+</html>

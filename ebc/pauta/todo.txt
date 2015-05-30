@@ -1,0 +1,48 @@
+Pauta:
+- Incluír campo para texto do reporter
+
+Marcação:
++ Mudar a forma de selecionar Repórter
++ Tirar o campo de status
++ Fazer workflow para marcações: 'Pendente','Marcado','Confirmado','Realizado'
+
+Especiais:
++ Criar tipo de conteúdo para especiais
++ Criar workflow (Em planejamento, Em execução, Finalizado)
+
+tpl_pautao:
++ Incluir Produtor/Editor/Reporter 
+- Incluir observação
+- Incluír tipo e midia
+
+tpl_emproducao:
++ Dividir em 2 listas: Futuro (d+1), Passado (d e d-n)
+
+tpl_sugestoes:
+- visualização por data com calendário
+
+tpl_sugestoesLista:
+- visualizar todas as sugestões com divisão de Futuro e Passado
+
+tpl_arquivo:
+- visualizar todas as pautas arquivadas, ordenado por data decrescente
+
+tpl_nbrentrevista:
+- visualizar todas as pautas, em ordem decrescrente, identificando o estado. Possibilidade de ocultar pautas em determinados estados
+
+tpl_cenasdobrasil:
+- visualizar todas as pautas, em ordem decrescrente, identificando o estado. Possibilidade de ocultar pautas em determinados estados
+
+tpl_documentacao:
+- visualizar todas as pautas, em ordem decrescrente, identificando o estado. Possibilidade de ocultar pautas em determinados estados
+
+tpl_marcacoes:
+- ajustar estilos
+
+tpl_especiais:
+- Ordenar pela data, em ordem decrescente, identificando o estado. Possibilidade de ocultar pautas em determinados estados
+
+
+
+
+

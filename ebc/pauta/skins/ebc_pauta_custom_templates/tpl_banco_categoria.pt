@@ -1,0 +1,60 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+
+<head>
+    <metal:block fill-slot="top_slot"
+           tal:define="dummy python:request.set('disable_border',1)" />
+</head>
+
+
+<body>
+
+    <div metal:fill-slot="main">
+
+        <div metal:define-macro="main"
+             tal:define="categoria python:request.get('categoria');
+                         categorias python:context.getCategorias();">
+
+            
+            <span class="titulo">Categorias:</span>
+
+            <ul id="politicas" tal:condition="not: politica">
+                <li tal:repeat="politica python:politicas.keys()">
+                  <a href="" tal:attributes="href string:${context/absolute_url}/tpl_banco_politica?politica=$politica"
+                             tal:content="python:politicas[politica]" />
+                </li>
+            </ul>
+
+
+
+            <tal:cond condition="politica">
+            <span tal:content="python:politicas[politica]" />  
+            <ul id="politicas">
+                <tal:def define="pautas python:context.portal_catalog.searchResults(Type='Pauta',politica=politica,sort_on='getData', sort_order='reverse')">
+                  <li tal:repeat="pauta pautas">
+                    <span tal:content="python:pauta.getData.strftime('%d/%m/%Y')" /> - <a href="" tal:attributes="href python:pauta.getURL()"
+                               tal:content="python:pauta.Title" />
+                  </li>
+                </tal:def>
+            </ul>
+
+            <br ><br >
+            <a href="" tal:attributes="href string:${context/absolute_url}/tpl_banco_politica">Voltar</a>
+
+            </tal:cond>
+
+
+
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

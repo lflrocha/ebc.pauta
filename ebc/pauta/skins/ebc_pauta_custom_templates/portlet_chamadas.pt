@@ -1,0 +1,41 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="plone">
+
+<body>
+
+<!-- The Favorites Box -->
+
+<div metal:define-macro="portlet">
+
+        <a title="Chamadas"
+           tal:attributes="href string:${context/portal_url}/chamadas/createObject?type_name=Chamada"><img src="" tal:attributes="src string:${context/portal_url}/btn_solicitarchamada.png"></a>
+        <br /><br />
+
+
+<dl class="portlet">
+
+    <dt class="portletHeader">
+        <span class="portletTopLeft"></span>
+        <span class="portletTopRight"></span>
+    </dt>
+    <dd class="portletItem odd">
+      <ul>
+        <li><a tal:attributes="href string:${context/portal_url}/chamadas/tpl_chamadas">Chamadas</a></li>
+        <li><a tal:attributes="href string:${context/portal_url}/chamadas/tpl_cabecas">Cabe&ccedil;as</a></li>
+        <li><a tal:attributes="href string:${context/portal_url}/chamadas/tpl_offs">Offs</a></li>
+      </ul>
+        <span class="portletBottomLeft"></span>
+        <span class="portletBottomRight"></span>
+    </dd>
+
+
+</dl>
+
+</div>
+
+</body>
+
+</html>

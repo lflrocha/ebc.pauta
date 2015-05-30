@@ -1,0 +1,436 @@
+/* <dtml-with base_properties> (do not remove this :) */
+/* <dtml-call "REQUEST.set('portal_url', portal_url())"> (not this either :) */
+
+body {
+    font-family: arial, Helvetica,sans-serif;
+    width: 960px;
+    margin: 0 auto;
+}
+
+#login-form input.context {
+    background-color: white;
+}
+
+#wrapperLogin {
+    height: 373px;
+    width: 747px;
+    background: url(&dtml-portal_url;/fundo.jpg);
+    margin: 50px auto 0;
+}
+
+#wrapperLogin .logo {
+ margin: 25px 221px 10px;
+}
+
+
+#wrapperLogin fieldset {
+    border: none;
+}
+
+
+#wrapperLogin label {
+    color: white;
+    font-weight: normal;
+}
+
+#wrapperLogin .enableAutoFocus {
+    margin-left: 50px;
+    width: 250px;
+    float: left;
+}
+
+#wrapperLogin #texto {
+    color: white;
+    float: right;
+    font-size: 13px;
+    margin-right: 20px;
+    text-align: right;
+    width: 420px;
+
+}
+
+#wrapperLogin p {
+    line-height: 1.35em;
+}
+
+#wrapperLogin #login-forgotten-password {
+  color: white;
+    margin-left: 60px;
+    margin-top: -10px;
+}
+
+
+#wrapperLogin #login-forgotten-password a,
+#wrapperLogin #login-forgotten-password h3{
+  color: white;
+}
+
+
+#portal-header {
+    background-image: url(&dtml-portal_url;/topo.jpg);
+    height: 140px;
+}
+
+#portal-logo img {
+    margin: 10px 0 0 30px;
+}
+
+#portal-searchbox {
+    padding: 30px 2em 0 0;
+}
+
+.searchSection {
+    color: #ffffff;
+}
+
+#portal-globalnav {
+    background: url(&dtml-portal_url;/globalnav-bg.png) ;
+    height: 30px;
+    margin: -14px 140px 0;
+    padding: 0 0 0 15px;
+}
+
+#portal-globalnav li {
+    line-height: 30px;
+}
+
+#portal-globalnav li a {
+    background-color: transparent;
+    border: none;
+    color: white;
+    padding: 5px 14px;
+    text-decoration: none;
+    text-transform: none;
+    font-size: 14px;
+}
+
+#portal-globalnav li a:hover {
+    background-color: #e0dfdf;
+    color: #265c94;
+}
+
+#portal-globalnav li.selected a {
+    background-color: transparent;
+    border: none;
+    color: white;
+}
+
+#portal-breadcrumbs {
+    border-bottom: none;
+    padding-left: 0;    
+}
+
+#portal-column-one .visualPadding,
+#portal-column-two .visualPadding {
+    padding: 20px 0 10px 0;
+}
+
+
+/*
+** PORTLET STYLES
+*/
+
+dl.portlet {
+  position: relative;
+  color: &dtml-globalFontColor;;
+  background-color: &dtml-globalBackgroundColor;;
+  border: 0
+}
+
+.portletHeader {
+  padding: 15px 15px 0 15px;
+  font-size: 1.3em;
+  font-weight: bold;
+  line-height: 1.2em;
+  border: 0;
+  text-transform: none;
+}
+
+.portletHeader a {
+  color: &dtml-globalFontColor;;
+}
+
+.portletItem {
+  padding: 0.5em 15px;
+  font-size: 1em;
+  border: 0;
+}
+
+dd.portletFooter {
+  background-color: transparent;
+  margin-top: 1em;
+  padding: 0.25em 15px;
+  border: 0;
+  border-top: 1px dotted &dtml-globalBorderColor;;
+}
+
+/* portlet rounded corners */
+
+.portletTopLeft,
+.portletTopRight,
+.portletBottomLeft,
+.portletBottomRight {
+  position: absolute;
+  height: 8px;
+  width: 8px;
+  background-repeat: no-repeat;
+  background-position: top left;
+}
+.portletTopLeft {
+  top: 0;
+  left: 0;
+  background-image: url(&dtml-portal_url;/portlet-corner-top-left.gif);
+}
+.portletTopRight {
+  top: 0;
+  right: 0;
+  background-image: url(&dtml-portal_url;/portlet-corner-top-right.gif);
+}
+.portletBottomLeft {
+  bottom: 0;
+  left: 0;
+  background-image: url(&dtml-portal_url;/portlet-corner-bottom-left.gif);
+}
+.portletBottomRight {
+  bottom: 0;
+  right: 0;
+  background-image: url(&dtml-portal_url;/portlet-corner-bottom-right.gif);
+}
+
+/* navigation portlet */
+
+dd.portletItem .navTreeItem a,
+dd.portletItem .navTreeItem a:hover {
+  border: 0;
+}
+.navTreeCurrentItem {
+  border: 0!important;
+}
+.navTreeCurrentItem span {
+  text-decoration: underline;
+}
+
+/* personaltools portlet */
+
+#portlet-personaltools .portalUser {
+  background: transparent url(&dtml-portal_url;/user.gif) center left no-repeat;
+  padding-left: 18px;
+}
+
+/* calendar */
+
+.portletCalendar .portletItem {
+  padding-bottom: 1em;
+}
+
+/*
+** FRONT PAGE STYLES
+*/
+
+.wrapperIcones{
+  width:655px;
+  margin:0 auto;
+  padding: 0 0 0 12px;
+}
+
+ul#menuIcones{
+  list-style:none;  
+}
+
+ul#menuIcones li{
+  background:#f8fafb;
+  border:1px solid #d1d1d1;
+  display:block;
+  float:left;
+  width:160px;
+  height:140px;
+  padding:10px;
+  text-align:center;
+  margin:0 30px 30px 0; 
+}
+
+ul#menuIcones li img{
+  border:0;
+}
+
+ul#menuIcones li a{
+  font-weight:bold;
+  text-decoration:none;
+  color:#436976;
+        border-bottom: none;
+}
+
+ul#menuIcones li a:hover{
+  text-decoration:underline;
+        border-bottom: none;
+}
+
+ul#menuIcones li p{
+  font-size:10px; 
+}
+
+
+
+
+
+
+/*
+** PAGE TEMPLATES STYLES
+*/
+
+.titulo{
+  font-weight:bold; 
+  font-size:18px;
+  padding:12px 0;
+  display:block;
+  color:#3c3a3a;
+}
+
+
+.turno{
+  font-weight:bold;
+  display:block;
+  margin: 20px 0 0 0;
+  font-size:15px;
+  border-bottom:1px solid #ccc;
+}
+
+
+
+#pautas{
+  list-style-type:circle;
+  width:592px;
+  margin:0 auto;
+}
+
+#pautas li {
+  display:block;
+  padding: 8px 26px;
+}
+
+/* sobrescrevendo estilo do Plone */
+#pautas li a{
+  border-bottom: 0px;
+}
+
+
+#pautas .manchete {
+  font-size:14px;
+  font-weight:bold;
+  color:#424657;  
+}
+
+#pautas span {
+  font-size:12px;
+  color:#424657;  
+}
+
+#chamadas {
+  list-style-type:circle;
+  width:592px;
+  margin:0 auto;
+}
+
+#chamadas li {
+  display:block;
+  padding: 8px 26px;
+}
+
+#chamadas li a{
+  border-bottom: 0px;
+  color: #414656;
+}
+
+
+#chamadas .manchete {
+  font-size:14px;
+  font-weight:bold;
+  color:#424657;  
+}
+
+#chamadas span {
+  font-size:12px;
+  color:#424657;  
+}
+
+
+
+.pautaCor1{
+  background:#fcfaf1;
+  border-bottom:1px solid #e8e6de;
+}
+
+.pautaCor2{
+  background:#fef3d9;
+  border-bottom:1px solid #e8e6de;
+}
+
+.pautaCor3{
+  background:#EFF2F4;
+  border-bottom:1px solid #e8e6de;
+}
+
+.pautaCor4{
+  background:#c8cfd5;
+  border-bottom:1px solid #e8e6de;
+}
+
+.pautaCor5{
+  background:#d8e4fa;
+  border-bottom:1px solid #e8e6de;
+}
+
+
+
+#eventos,
+#emProducao {
+  list-style:none;
+  margin: 0;
+}
+
+#eventos li,
+#emProducao li{
+  display:block;
+  line-height:16px;
+  padding: 10px 0px;
+  border-bottom:1px dotted #666666; 
+}
+
+#eventos a,
+#emProducao a {
+    color: #3c3a3a;
+    text-decoration: none;
+    border-bottom: none;
+    font-weight: bold;
+}
+
+.mes{
+  font-weight:bold; 
+  font-size:16px;
+  padding:12px 0px;
+  display:block;
+  color:#3c3a3a;
+}
+
+.legenda{
+  background:url(legenda.jpg);  
+  width:103px;
+  height:24px;
+  position:absolute;
+  right:12px;
+  top:10px;
+}
+
+
+
+
+
+.event a {
+  color: red !important;
+}
+
+
+
+
+
+/* </dtml-with> */

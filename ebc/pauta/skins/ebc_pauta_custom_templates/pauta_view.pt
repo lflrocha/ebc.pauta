@@ -1,0 +1,202 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+<body>
+
+<metal:main fill-slot="main">
+    <tal:main-macro metal:define-macro="main"
+           tal:define="kssClassesView context/@@kss_field_decorator_view;
+                       getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
+                       templateId template/getId;
+                       data here/getData;
+                       produtor here/getProdutor;
+                       editor here/getEditor;
+                       politicas here/getPolitica;
+                       midias here/getMidias;
+                       turnos here/getTurno;">
+
+
+        <div tal:replace="structure provider:plone.abovecontenttitle" />
+
+        <h1 class="documentFirstHeading"> 
+            <metal:field use-macro="python:here.widget('title', mode='view')">
+            Title
+            </metal:field>
+        </h1>
+
+        <div tal:replace="structure provider:plone.belowcontenttitle" />
+
+        <div tal:replace="structure provider:plone.abovecontentbody" />
+
+        <br />
+
+        <div class="field">
+          <label>Data:</label>
+          <span tal:condition="data" tal:content="python:data.strftime('%d/%m/%Y')" />
+        </div>
+
+        <div class="field">
+          <label>Produtor:</label>
+          <metal:field use-macro="python:here.widget('produtor', mode='view')" />
+        </div>
+
+        <div class="field">
+          <label>Editor:</label>
+          <metal:field use-macro="python:here.widget('editor', mode='view')" />
+        </div>
+
+        <div class="field">
+          <label>Rep&oacute;rter:</label>
+          <metal:field use-macro="python:here.widget('reporter', mode='view')" />
+        </div>
+
+
+        <div class="field">
+          <label>Apresentador:</label>
+          <metal:field use-macro="python:here.widget('apresentador', mode='view')" />
+        </div>
+
+        <div class="field">
+          <label>Pol&iacute;ticas P&uacute;blicas:</label>
+          <metal:field use-macro="python:here.widget('politica', mode='view')" />
+        </div>
+
+        <div class="field">
+          <label>M&iacute;dias:</label>
+          <metal:field use-macro="python:here.widget('midias', mode='view')" />
+        </div>
+
+        <div class="field">
+          <label>Tipos:</label>
+          <metal:field use-macro="python:here.widget('tipos', mode='view')" />
+        </div>
+
+        <div class="field">
+          <label>Turno:</label>
+          <metal:field use-macro="python:here.widget('turno', mode='view')" />
+        </div>
+
+        <div class="field">
+          <label>Pauta:</label>
+          <br />
+          <span tal:content="structure here/getPauta" />
+        </div>
+
+        <div class="field">
+          <label>Enfoque:</label>
+          <br />
+          <span tal:content="structure here/getEnfoque" />
+        </div>
+
+
+
+        <div class="field"
+             tal:define="marcacoes python:here.getMarcacoes();">
+            <label>Marca&ccedil;&otilde;es:</label>
+            <ul id="marcacoes">
+            <tal:rep repeat="marcacao marcacoes">
+                <li tal:define="data marcacao/getData;
+                                entrevistado marcacao/getEntrevistado;
+                                local marcacao/getLocal;
+                                contato marcacao/getContato;
+                                reporteres marcacao/getReporteresString;
+                                cinegrafistas marcacao/getCinegrafistasString;
+                                observacoes marcacao/getObservacoes;">
+                    <a tal:attributes="href python:marcacao.id" tal:content="python:marcacao.Title" />- 
+                    <a tal:attributes="href string:${marcacao/id}/edit">Editar</a> - 
+                    <a tal:attributes="href string:${marcacao/id}/delete_confirmation">Excluir</a><br />
+
+                    Data: <span tal:content="python:data.strftime('%H:%M %d/%m/%Y')" /><br />
+                    <tal:cond condition="entrevistado">Entrevistado: <span tal:content="entrevistado" /> <br /></tal:cond>
+                    <tal:cond condition="local">Local: <span tal:content="structure local" /></tal:cond>
+                    <tal:cond condition="contato">Contato: <span tal:content="structure contato" /></tal:cond>
+                    <tal:cond condition="reporteres">Rep&oacute;rter: <span tal:content="reporteres" /> <br /></tal:cond>
+                    <tal:cond condition="cinegrafistas">Cinegrafista: <span tal:content="cinegrafistas" /> <br /></tal:cond>
+                    <tal:cond condition="observacoes">Observa&ccedil;&atilde;o: <span tal:content="structure observacoes" /></tal:cond>
+
+                </li>
+            </tal:rep>
+            </ul>
+        </div>
+
+        <div class="field">
+          <label>Contexto:</label>
+          <br />
+          <span tal:content="structure here/getContexto" />
+        </div>
+
+
+        <div class="field">
+          <label>Observa&ccedil;&otilde;es:</label>
+          <br />
+          <span tal:content="structure here/getObservacao" />
+        </div>
+
+        <div class="field">
+          <label>Vocabul&aacute;rio controlado:</label>
+          <metal:field use-macro="python:here.widget('vcg', mode='view')" />
+        </div>
+
+        <div class="field">
+          <label>Abrang&ecirc;ncia:</label>
+          <metal:field use-macro="python:here.widget('abrangencia', mode='view')" />
+        </div>
+
+        <div class="field">
+          <label>&Oacute;rg&atilde;os citados:</label>
+          <metal:field use-macro="python:here.widget('orgaoscitados', mode='view')" />
+        </div>
+
+        <div class="field">
+          <label>Planos e Programas de governo citados:</label>
+          <metal:field use-macro="python:here.widget('planos', mode='view')" />
+        </div>
+
+
+
+
+
+        <h2>Texto</h2>
+        <div class="field"
+             tal:define="textos python:here.getTextos();">
+            <ul id="textos">
+            <tal:rep repeat="texto textos">
+                <li>
+                    <a tal:attributes="href python:texto.id" tal:content="python:texto.getMidia[0]" /> - 
+                    <a tal:attributes="href string:${texto/id}/edit">Editar</a> <br />
+                    <span tal:content="structure texto/getTexto" />
+                </li>
+        </tal:rep>
+            </ul>
+        </div>
+
+        <h2>Infografia</h2>
+        <div class="field"
+             tal:define="infografias python:here.getInfografias();">
+            <ul id="infografias">
+            <tal:rep repeat="infografia infografias">
+                <li  tal:define="status infografia/review_state ">
+                    <span tal:content="python:infografia.getEntrega.strftime('%H:%M %d/%m/%Y')" /> - 
+                    <a tal:attributes="href python:infografia.id" tal:content="python:infografia.Type" /> - 
+                    <a tal:attributes="href string:${infografia/id}/edit">Editar</a> - 
+                    <a tal:condition="python:status=='Solicitacao'"
+                       tal:attributes="href string:${infografia/id}/content_status_modify?workflow_action=Enviar%20solicitacao">Enviar</a>
+                    <span tal:condition="python:status!='Solicitacao'"
+                       tal:content="status" />
+
+                </li>
+            </tal:rep>
+            </ul>
+        </div>
+
+        <div tal:replace="structure provider:plone.belowcontentbody" />
+
+    </tal:main-macro>
+</metal:main>
+
+</body>
+</html>

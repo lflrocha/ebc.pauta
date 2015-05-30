@@ -1,0 +1,112 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    i18n_domain="ebc.pauta">
+
+  <!-- configure your content components here -->
+  
+  <!-- -*- extra stuff goes here -*- -->
+  <class class=".criacao.Criacao">
+    <require
+        permission="zope2.View"
+        interface="..interfaces.ICriacao"
+        />
+    <require
+        permission="cmf.ModifyPortalContent"
+        set_schema="..interfaces.ICriacao"
+        />
+  </class>
+  <class class=".chamada.Chamada">
+    <require
+        permission="zope2.View"
+        interface="..interfaces.IChamada"
+        />
+    <require
+        permission="cmf.ModifyPortalContent"
+        set_schema="..interfaces.IChamada"
+        />
+  </class>
+  <class class=".servico.Servico">
+    <require
+        permission="zope2.View"
+        interface="..interfaces.IServico"
+        />
+    <require
+        permission="cmf.ModifyPortalContent"
+        set_schema="..interfaces.IServico"
+        />
+  </class>
+  <class class=".santinho.Santinho">
+    <require
+        permission="zope2.View"
+        interface="..interfaces.ISantinho"
+        />
+    <require
+        permission="cmf.ModifyPortalContent"
+        set_schema="..interfaces.ISantinho"
+        />
+  </class>
+  <class class=".infografia.Infografia">
+    <require
+        permission="zope2.View"
+        interface="..interfaces.IInfografia"
+        />
+    <require
+        permission="cmf.ModifyPortalContent"
+        set_schema="..interfaces.IInfografia"
+        />
+  </class>
+  <class class=".marcacao.Marcacao">
+    <require
+        permission="zope2.View"
+        interface="..interfaces.IMarcacao"
+        />
+    <require
+        permission="cmf.ModifyPortalContent"
+        set_schema="..interfaces.IMarcacao"
+        />
+  </class>
+  <class class=".pauta.Pauta">
+    <require
+        permission="zope2.View"
+        interface="..interfaces.IPauta"
+        />
+    <require
+        permission="cmf.ModifyPortalContent"
+        set_schema="..interfaces.IPauta"
+        />
+  </class>
+  <class class=".especial.Especial">
+    <require
+        permission="zope2.View"
+        interface="..interfaces.IEspecial"
+        />
+    <require
+        permission="cmf.ModifyPortalContent"
+        set_schema="..interfaces.IEspecial"
+        />
+  </class>
+  <class class=".texto.Texto">
+    <require
+        permission="zope2.View"
+        interface="..interfaces.ITexto"
+        />
+    <require
+        permission="cmf.ModifyPortalContent"
+        set_schema="..interfaces.ITexto"
+        />
+  </class>
+
+  <class class=".evento.Evento">
+    <require
+        permission="zope2.View"
+        interface="..interfaces.IEvento"
+        />
+    <require
+        permission="cmf.ModifyPortalContent"
+        set_schema="..interfaces.IEvento"
+        />
+  </class>
+
+
+</configure>

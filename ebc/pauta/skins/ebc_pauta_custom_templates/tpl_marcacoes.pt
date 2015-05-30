@@ -1,0 +1,73 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+
+
+<head>
+    <metal:block fill-slot="top_slot"
+           tal:define="dummy python:request.set('disable_border',1)" />
+</head>
+
+
+<body>
+    <div metal:fill-slot="main">
+
+        <div metal:define-macro="main"
+             tal:define="data python:request.get('data',DateTime().Date());
+                         anterior python:DateTime(data)-1;
+                         proximo python:DateTime(data)+1;                         
+                         marcacoes python:context.getMarcacoesTodas(data);">
+
+            <span class="titulo">Marca&ccedil;&otilde;es</span>
+        
+            <div class="data">
+                <a tal:attributes="href string:${context/portal_url}/pautas/tpl_marcacoes?data=${anterior}">Dia anterior</a>
+                <a tal:content="python:DateTime(data).strftime('%d/%m/%Y')"
+                   tal:attributes="href string:${context/portal_url}/pautas/tpl_marcacoes?data=${data}" />
+                <a tal:attributes="href string:${context/portal_url}/pautas/tpl_marcacoes?data=${proximo}">Dia posterior</a>                                
+                <input type="hidden" id="datepicker">
+            </div>
+	        
+	        <br />
+
+            <ul id="emProducao">
+				<tal:rep repeat="marcacao marcacoes">
+                <li tal:define="obj python:marcacao.getObject()">
+                    <span class="data" tal:content="python:marcacao.getData.strftime('%H:%M')" /> -
+					<a tal:attributes="href obj/absolute_url"><b tal:content="marcacao/Title" /></a>
+					<br />
+					Pauta: <a tal:attributes="href python:obj.aq_parent.absolute_url()" tal:content="python:obj.aq_parent.Title()" />
+					<br />						
+					Rep&oacute;rter: <span tal:content="python:obj.aq_parent.getReporteresString()" />
+                </li>
+				</tal:rep>
+            </ul>
+	        
+
+        </div>
+
+	<script>
+	jq(function() {
+		jq( "#datepicker" ).datepicker({
+			showOn: "button",
+			buttonImage: "calendar_icon.gif",
+			buttonImageOnly: true,
+			changeMonth: true,
+			changeYear: true,
+            dateFormat: 'yy/mm/dd',
+            onSelect: function(dateText, inst) { 
+                window.location = 'tpl_marcacoes?data='+dateText;
+             },
+		});
+	});
+	</script>
+
+    </div>
+
+</body>
+
+</html>

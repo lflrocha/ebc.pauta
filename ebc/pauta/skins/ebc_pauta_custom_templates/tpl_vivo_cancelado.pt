@@ -1,0 +1,38 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+
+<head>
+    <metal:block fill-slot="top_slot"
+           tal:define="dummy python:request.set('disable_border',1)" />
+</head>
+
+
+<body>
+    <div metal:fill-slot="main">
+
+        <div metal:define-macro="main"
+             tal:define="eventos python:context.getVivoCancelado();">
+
+            <span class="titulo">Vivos - Cancelados</span>
+                
+            <ul id="eventos">
+                <li tal:repeat="evento eventos">
+                    <span tal:replace="python:DateTime(evento.getData_hora).strftime('%d/%m/%Y %H:%M')" /> - 
+                    <a tal:attributes="href evento/getURL" tal:content="evento/Title" /><br />
+                    <tal:cond condition="evento/getObs_importante"><span tal:content="evento/getObs_importante" /><br /></tal:cond>
+                    <span tal:replace="structure evento/getLocal" />
+                </li>
+            </ul>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,99 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+
+<head>
+    <metal:block fill-slot="top_slot"
+           tal:define="dummy python:request.set('disable_border',1)" />
+</head>
+
+
+<body>
+    <div metal:fill-slot="main">
+
+        <div metal:define-macro="main"
+             tal:define="data python:request.get('data',DateTime().Date());
+                         anterior python:DateTime(data)-1;
+                         proximo python:DateTime(data)+1;                         
+                         eventos python:context.getVivo(data);
+                         manha python:eventos['manha'];
+                         tarde python:eventos['tarde'];
+                         noite python:eventos['noite'];">
+
+            <span class="titulo">Vivos - Agendados</span>
+        
+            <div class="data">
+                <a tal:attributes="href string:${context/portal_url}/vivo/tpl_vivo?data=${anterior}">Dia anterior</a>
+                <a tal:content="python:DateTime(data).strftime('%d/%m/%Y')"
+                   tal:attributes="href string:${context/portal_url}/vivo/tpl_vivo?data=${data}" style="font-size: 150%" />
+                <a tal:attributes="href string:${context/portal_url}/vivo/tpl_vivo?data=${proximo}">Dia posterior</a>                                
+                <input type="hidden" id="datepicker">
+
+                
+            </div>
+        
+            <br /><br />
+
+            <div class="turno">Manh&atilde;</div>
+            <ul id="pautas" class="pautaCor1">
+                <li tal:repeat="evento manha">
+                    <span tal:replace="python:DateTime(evento.getData_hora).strftime('%d/%m/%Y %H:%M')" /> - 
+                    <a tal:attributes="href evento/getURL" tal:content="evento/Title" /><br />
+                    <tal:cond condition="evento/getObs_importante"><span tal:content="evento/getObs_importante" /><br /></tal:cond>
+                    <span tal:replace="structure evento/getLocal" />
+                </li>
+            </ul>
+
+            <br /><br />
+
+            <div class="turno">Tarde</div>
+            <ul id="pautas" class="pautaCor2">
+                <li tal:repeat="evento tarde" >
+                    <span tal:replace="python:DateTime(evento.getData_hora).strftime('%d/%m/%Y %H:%M')" /> - 
+                    <a tal:attributes="href evento/getURL" tal:content="evento/Title" /><br />
+                    <tal:cond condition="evento/getObs_importante"><span tal:content="evento/getObs_importante" /><br /></tal:cond>
+                    <span tal:replace="structure evento/getLocal" />
+                </li>
+            </ul>
+
+            <br /><br />
+
+            <div class="turno">Noite</div>
+            <ul id="pautas" class="pautaCor3">
+                <li tal:repeat="evento noite">
+                    <span tal:replace="python:DateTime(evento.getData_hora).strftime('%d/%m/%Y %H:%M')" /> - 
+                    <a tal:attributes="href evento/getURL" tal:content="evento/Title" /><br />
+                    <tal:cond condition="evento/getObs_importante"><span tal:content="evento/getObs_importante" /><br /></tal:cond>
+                    <span tal:replace="structure evento/getLocal" />
+                </li>
+            </ul>
+
+        </div>
+
+    <script>
+    jq(function() {
+        jq( "#datepicker" ).datepicker({
+            showOn: "button",
+            buttonImage: "calendar_icon.gif",
+            buttonImageOnly: true,
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'yy/mm/dd',
+            onSelect: function(dateText, inst) { 
+                window.location = 'vivo/tpl_vivo?data='+dateText;
+             },
+        });
+    });
+    </script>
+
+
+
+    </div>
+
+</body>
+
+</html>

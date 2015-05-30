@@ -1,0 +1,44 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="plone">
+
+<body>
+
+<!-- The Favorites Box -->
+
+<div metal:define-macro="portlet">
+
+        <a title="Pautas"
+           tal:attributes="href string:${context/portal_url}/vivo/createObject?type_name=Evento"><img src="" tal:attributes="src string:${context/portal_url}/btn_sugerirvivo.png"></a>
+        <br /><br />
+
+
+<dl class="portlet">
+
+    <dt class="portletHeader">
+        <span class="portletTopLeft"></span>
+        <span class="portletTopRight"></span>
+    </dt>
+    <dd class="portletItem odd">
+      <ul>
+        <li><a tal:attributes="href string:${context/portal_url}/vivo">Agendados</a></li>
+        <li><a tal:attributes="href string:${context/portal_url}/vivo/tpl_vivo_transmitido">Transmitidos</a></li>
+        <li><a tal:attributes="href string:${context/portal_url}/vivo/tpl_vivo_cancelado">Cancelados</a></li>
+        <hr />
+        <li><a tal:attributes="href string:${context/portal_url}/vivo/tpl_vivo_mes">Lista por m&ecirc;s</a></li>
+
+      </ul>
+        <span class="portletBottomLeft"></span>
+        <span class="portletBottomRight"></span>
+    </dd>
+
+
+</dl>
+
+</div>
+
+</body>
+
+</html>

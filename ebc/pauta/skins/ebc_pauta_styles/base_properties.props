@@ -1,0 +1,47 @@
+title:string=EBC Pauta's color, font, logo and border defaults
+
+plone_skin:string=EBC Pauta
+
+logoName:string=logo.png
+
+fontFamily:string="Lucida Grande", Verdana, Lucida, Helvetica, Arial, sans-serif
+fontBaseSize:string=69%
+fontColor:string=Black
+fontSmallSize:string=85%
+
+backgroundColor:string=White
+
+linkColor:string=#436976
+linkActiveColor:string=Red
+linkVisitedColor:string=Purple
+
+borderWidth:string=1px
+borderStyle:string=solid
+borderStyleAnnotations:string=dashed
+
+globalBorderColor:string=#a2a2a2
+globalBackgroundColor:string=#f5f5f5
+globalFontColor:string=#265c94
+
+headingFontFamily:string="Lucida Grande", Verdana, Lucida, Helvetica, Arial, sans-serif
+
+contentViewBorderColor:string=#a2a2a2
+contentViewBackgroundColor:string=#f5f5f5
+contentViewFontColor:string=#265c94
+
+inputFontColor:string=Black
+
+textTransform:string=lowercase
+
+evenRowBackgroundColor:string=#eef3f5 
+oddRowBackgroundColor:string=transparent
+
+notifyBorderColor:string=#ffa500
+notifyBackgroundColor:string=#ffce7b
+
+discreetColor:string=#76797c
+helpBackgroundColor:string=#ffffe1
+
+portalMinWidth:string=70em
+columnOneWidth:string=160px
+columnTwoWidth:string=160px

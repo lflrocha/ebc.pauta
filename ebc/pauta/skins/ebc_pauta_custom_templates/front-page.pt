@@ -1,0 +1,77 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+
+<metal:block fill-slot="top_slot"
+
+             tal:define="dummy python:request.set('disable_border',1)" /> 
+
+<body>
+    <div metal:fill-slot="main">
+
+        <div metal:define-macro="main">
+          
+
+<div class="wrapperIcones">
+
+    <ul id="menuIcones">
+    
+        <li>
+            <a href="#" tal:attributes="href string:${context/portal_url}/pautas">
+               <img tal:attributes="src string:${context/portal_url}/icone_pautas.png" alt="" />
+            </a><br />
+            <a href="#" tal:attributes="href string:${context/portal_url}/pautas">Pautas</a>
+        </li>
+
+        <li>
+            <a href="#" tal:attributes="href string:${context/portal_url}/vivo">
+              <img tal:attributes="src string:${context/portal_url}/icone_vivo.png" alt="" />
+            </a><br />
+            <a href="#" tal:attributes="href string:${context/portal_url}/vivo">Vivos</a>
+        </li>
+                        
+        <li>
+            <a href="#" tal:attributes="href string:${context/portal_url}/infografias">
+              <img tal:attributes="src string:${context/portal_url}/icone_infografias.png" alt="" />
+            </a><br />
+            <a href="#" tal:attributes="href string:${context/portal_url}/infografias">Infografias</a>
+        </li>
+
+        <li>
+            <a href="#" tal:attributes="href string:${context/portal_url}/programacao">
+              <img tal:attributes="src string:${context/portal_url}/icone_programacao.png" alt="" />
+            </a><br />
+            <a href="#" tal:attributes="href string:${context/portal_url}/programacao">Programa&ccedil;&atilde;o</a>
+        </li>
+
+        <li>
+            <a href="#" tal:attributes="href string:${context/portal_url}/chamadas">
+              <img tal:attributes="src string:${context/portal_url}/icone_chamadas.png" alt="" />
+            </a><br />
+            <a href="#" tal:attributes="href string:${context/portal_url}/chamadas">Chamadas</a>
+        </li>
+        
+        <li>
+            <a href="#" tal:attributes="href string:${context/portal_url}/banco">
+              <img tal:attributes="src string:${context/portal_url}/icone_banco.png" alt="" />
+            </a><br />
+            <a href="#" tal:attributes="href string:${context/portal_url}/banco">Banco de Infoma&ccedil;&otilde;es</a>
+        </li>
+    
+    </ul>
+
+</div>
+
+
+
+
+        </div>
+    </div>
+
+</body>
+
+</html>

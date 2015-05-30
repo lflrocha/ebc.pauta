@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<dc-workflow workflow_id="marcacao_workflow"
+             title="pauta_workflow" description=""
+             state_variable="review_state"
+             initial_state="Pendente">
+ <state state_id="Confirmado" title="">
+  <exit-transition transition_id="Pendencia"/>
+  <exit-transition transition_id="Realizar"/>
+ </state>
+ <state state_id="Marcado" title="">
+  <exit-transition transition_id="Confirmar"/>
+  <exit-transition transition_id="Pendencia"/>
+ </state>
+ <state state_id="Pendente" title="">
+  <exit-transition transition_id="Marcar"/>
+ </state>
+ <state state_id="Realizado" title="">
+  <exit-transition transition_id="Pendencia"/>
+ </state>
+ <transition transition_id="Confirmar" title="Confirmar"
+             new_state="Confirmado" trigger="USER"
+             before_script="" after_script="">
+  <action url="" category="workflow">Confirmar</action>
+  <guard>
+  </guard>
+ </transition>
+ <transition transition_id="Marcar" title=""
+             new_state="Marcado" trigger="USER"
+             before_script="" after_script="">
+  <action url="" category="workflow">Marcar</action>
+  <guard>
+  </guard>
+ </transition>
+ <transition transition_id="Pendencia" title="Com pendencia"
+             new_state="Pendente" trigger="USER"
+             before_script="" after_script="">
+  <action url="" category="workflow">Com pendencia</action>
+  <guard>
+  </guard>
+ </transition>
+ <transition transition_id="Realizar" title="Realizar"
+             new_state="Realizado" trigger="USER"
+             before_script="" after_script="">
+  <action url="" category="workflow">Realizar</action>
+  <guard>
+  </guard>
+ </transition>
+ <variable variable_id="action" for_catalog="False"
+           for_status="True" update_always="True">
+  <description>The last transition</description>
+  <default>
+   
+   <expression>transition/getId|nothing</expression>
+  </default>
+  <guard>
+  </guard>
+ </variable>
+ <variable variable_id="actor" for_catalog="False"
+           for_status="True" update_always="True">
+  <description>The ID of the user who performed the last transition</description>
+  <default>
+   
+   <expression>user/getId</expression>
+  </default>
+  <guard>
+  </guard>
+ </variable>
+ <variable variable_id="comments" for_catalog="False"
+           for_status="True" update_always="True">
+  <description>Comments about the last transition</description>
+  <default>
+   
+   <expression>python:state_change.kwargs.get('comment', '')</expression>
+  </default>
+  <guard>
+  </guard>
+ </variable>
+ <variable variable_id="review_history" for_catalog="False"
+           for_status="False" update_always="False">
+  <description>Provides access to workflow history</description>
+  <default>
+   
+   <expression>state_change/getHistory</expression>
+  </default>
+  <guard>
+   <guard-permission>Request review</guard-permission>
+   <guard-permission>Review portal content</guard-permission>
+  </guard>
+ </variable>
+ <variable variable_id="time" for_catalog="False"
+           for_status="True" update_always="True">
+  <description>Time of the last transition</description>
+  <default>
+   
+   <expression>state_change/getDateTime</expression>
+  </default>
+  <guard>
+  </guard>
+ </variable>
+</dc-workflow>

@@ -1,0 +1,68 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+
+<head>
+    <metal:block fill-slot="top_slot"
+           tal:define="dummy python:request.set('disable_border',1)" />
+</head>
+
+<body>
+
+    <div metal:fill-slot="main">
+
+        <div metal:define-macro="main">
+
+          <tal:def define="pautas python:context.getPautasEmProducaoFuturo();
+                           meses python:sequence.sort(pautas.keys());">
+
+
+            <span class="titulo">Em Produ&ccedil;&atilde;o</span>
+            <tal:meses repeat="mes meses">
+                <span class="mes" tal:content="python:mes[4:6] + '/' + mes[0:4] " />
+                <ul id="emProducao"
+                    tal:define="pts python:pautas[mes];
+                                ptss python:sequence.sort(pts,(('getData', 'cmp', 'asc'),))">
+                    <li tal:repeat="pauta ptss">
+                        <tal:def define="produtores pauta/getProdutoresString;
+                                         editores pauta/getEditoresString;
+                                         reporteres pauta/getReporteresString;
+                                         midia pauta/getMidiasString;
+                                         tipo pauta/getTiposString">
+                            <span tal:content="python:pauta.getData.strftime('%d/%m/%Y')" class="data" /> - 
+                            <a tal:attributes="href pauta/getURL"><b tal:content="pauta/Title" /></a><br />
+                            <tal:cond condition="midia"><span tal:content="midia" /> - <span tal:content="tipo" /><br /></tal:cond>
+                            <tal:cond condition="produtores">Produtores: <span tal:content="produtores" /><br /></tal:cond>
+                            <tal:cond condition="editores">Editores: <span tal:content="editores" /><br /></tal:cond>
+                            <tal:cond condition="reporteres">Rep&oacute;rteres: <span tal:content="reporteres" /></tal:cond>
+                        </tal:def>
+                    </li>                
+                </ul>
+            </tal:meses>
+          </tal:def>
+          <hr>
+          <tal:def define="pautas python:context.getPautasEmProducao();
+                           meses python:pautas.keys();">
+            <span class="titulo">Antigas</span>
+            <tal:meses repeat="mes meses">
+                <span class="mes" tal:content="python:mes[4:6] + '/' + mes[0:4] " />
+                <ul id="emProducao"
+                    tal:define="pts python:pautas[mes]">
+                    <li tal:repeat="pauta pts">
+                        <span tal:content="python:pauta.getData.strftime('%d/%m/%Y')" class="data" /> - 
+                        <a tal:attributes="href pauta/getURL"><b tal:content="pauta/Title" /></a><br />
+                        <span tal:content="pauta/getMidiasString" /> - <span tal:content="pauta/getTiposString" />
+                    </li>                
+                </ul>
+            </tal:meses>
+          </tal:def>
+
+        </div>
+    </div>
+</body>
+
+</html>

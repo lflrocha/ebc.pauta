@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<dc-workflow workflow_id="infografia_workflow"
+             title="pauta_workflow" description=""
+             state_variable="review_state"
+             initial_state="Solicitacao">
+ <state state_id="Aguardando edicao"
+        title="Aguardando Edicao">
+  <exit-transition transition_id="Iniciar edicao"/>
+  <exit-transition transition_id="Pendencia"/>
+ </state>
+ <state state_id="Em edicao" title="Em edicao">
+  <exit-transition transition_id="Finalizar edicao"/>
+  <exit-transition transition_id="Pendencia"/>
+ </state>
+ <state state_id="Finalizado" title="">
+  <exit-transition transition_id="Iniciar edicao"/>
+ </state>
+ <state state_id="Pendencia" title="Pendencia">
+  <exit-transition transition_id="Enviar solicitacao"/>
+ </state>
+ <state state_id="Solicitacao" title="Nao enviado">
+  <exit-transition transition_id="Enviar solicitacao"/>
+ </state>
+ <transition transition_id="Enviar solicitacao" title=""
+             new_state="Aguardando edicao" trigger="USER"
+             before_script="" after_script="">
+  <action url="" category="workflow">Enviar solicitacao</action>
+  <guard>
+  </guard>
+ </transition>
+ <transition transition_id="Finalizar edicao" title=""
+             new_state="Finalizado" trigger="USER"
+             before_script="" after_script="">
+  <action url="" category="workflow">Finalizar edicao</action>
+  <guard>
+  </guard>
+ </transition>
+ <transition transition_id="Iniciar edicao" title=""
+             new_state="Em edicao" trigger="USER"
+             before_script="" after_script="">
+  <action url="" category="workflow">Iniciar Edicao</action>
+  <guard>
+  </guard>
+ </transition>
+ <transition transition_id="Pendencia" title=""
+             new_state="Pendencia" trigger="USER"
+             before_script="" after_script="">
+  <action url="" category="workflow">Com pendencia</action>
+  <guard>
+  </guard>
+ </transition>
+ <variable variable_id="action" for_catalog="False"
+           for_status="True" update_always="True">
+  <description>The last transition</description>
+  <default>
+   
+   <expression>transition/getId|nothing</expression>
+  </default>
+  <guard>
+  </guard>
+ </variable>
+ <variable variable_id="actor" for_catalog="False"
+           for_status="True" update_always="True">
+  <description>The ID of the user who performed the last transition</description>
+  <default>
+   
+   <expression>user/getId</expression>
+  </default>
+  <guard>
+  </guard>
+ </variable>
+ <variable variable_id="comments" for_catalog="False"
+           for_status="True" update_always="True">
+  <description>Comments about the last transition</description>
+  <default>
+   
+   <expression>python:state_change.kwargs.get('comment', '')</expression>
+  </default>
+  <guard>
+  </guard>
+ </variable>
+ <variable variable_id="review_history" for_catalog="False"
+           for_status="False" update_always="False">
+  <description>Provides access to workflow history</description>
+  <default>
+   
+   <expression>state_change/getHistory</expression>
+  </default>
+  <guard>
+   <guard-permission>Request review</guard-permission>
+   <guard-permission>Review portal content</guard-permission>
+  </guard>
+ </variable>
+ <variable variable_id="time" for_catalog="False"
+           for_status="True" update_always="True">
+  <description>Time of the last transition</description>
+  <default>
+   
+   <expression>state_change/getDateTime</expression>
+  </default>
+  <guard>
+  </guard>
+ </variable>
+</dc-workflow>

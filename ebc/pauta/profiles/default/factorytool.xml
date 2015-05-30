@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<object name="portal_factory" meta_type="Plone Factory Tool">
+  <factorytypes>
+    <!-- -*- extra stuff goes here -*- -->
+    <type portal_type="Criacao" />
+    <type portal_type="Chamada" />
+    <type portal_type="Servico" />
+    <type portal_type="Santinho" />
+    <type portal_type="Infografia" />
+    <type portal_type="Marcacao" />
+    <type portal_type="Pauta" />
+    <type portal_type="Especial" />
+    <type portal_type="Texto" />
+    <type portal_type="Evento" />
+  </factorytypes>
+</object>

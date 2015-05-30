@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<rolemap>
+  <permissions>
+    <!-- -*- extra stuff goes here -*- -->
+
+    <permission name="ebc.pauta: Add Chamada" acquire="False">
+      <role name="Manager" />
+      <role name="Contributor" />
+    </permission>
+    <permission name="ebc.pauta: Add Criacao" acquire="False">
+      <role name="Manager" />
+      <role name="Contributor" />
+    </permission>
+    <permission name="ebc.pauta: Add Servico" acquire="False">
+      <role name="Manager" />
+      <role name="Contributor" />
+    </permission>
+    <permission name="ebc.pauta: Add Santinho" acquire="False">
+      <role name="Manager" />
+      <role name="Contributor" />
+    </permission>
+    <permission name="ebc.pauta: Add Infografia" acquire="False">
+      <role name="Manager" />
+      <role name="Contributor" />
+    </permission>
+    <permission name="ebc.pauta: Add Marcacao" acquire="False">
+      <role name="Manager" />
+      <role name="Contributor" />
+    </permission>
+    <permission name="ebc.pauta: Add Pauta" acquire="False">
+      <role name="Manager" />
+      <role name="Contributor" />
+    </permission>
+    <permission name="ebc.pauta: Add Especial" acquire="False">
+      <role name="Manager" />
+      <role name="Contributor" />
+    </permission>    
+    <permission name="ebc.pauta: Add Texto" acquire="False">
+      <role name="Manager" />
+      <role name="Contributor" />
+    </permission>    
+    <permission name="ebc.pauta: Add Evento" acquire="False">
+      <role name="Manager" />
+      <role name="Contributor" />
+    </permission>
+  </permissions>
+</rolemap>
+
+
